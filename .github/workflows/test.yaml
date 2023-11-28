@@ -36,6 +36,9 @@ jobs:
     - name: Package JAR
       run: mvn package
 
+    - name: Show target folderπ
+      run: ls target
+
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
