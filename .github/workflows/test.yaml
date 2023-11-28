@@ -36,13 +36,13 @@ jobs:
     - name: Package JAR
       run: mvn package
 
-    - name: Show target folderπ
-      run: ls target
+    - name: Set tag version as an environment variable
+      run: echo "TAG_VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: target/action-test-${GITHUB_REF/refs\/tags\//}.jar
+        files: target/action-test-${TAG_VERSION}.jar
         tag_name: ${{ github.ref }}
         title: Release ${{ github.ref }}
         body: Auto-generate release notes
