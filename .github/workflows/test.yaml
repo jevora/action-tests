@@ -39,6 +39,11 @@ jobs:
     - name: Set tag version as an environment variable
       run: echo "TAG_VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
 
+    - name: Debug TAG_VERSION
+      run: echo "TAG_VERSION=${{ env.GITHUB_REF/refs\/tags\// }}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE }}
+
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
