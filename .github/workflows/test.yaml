@@ -23,7 +23,7 @@ jobs:
     - name: Verify Maven version in pom.xml
       run: |
         TAG_VERSION=${GITHUB_REF/refs\/tags\/v/}
-        POM_VERSION=$(xmllint --xpath "//*[local-name()='project']/*[local-name()='version']/text()" pom.xml)
+        POM_VERSION=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml)
         
         if [ "$TAG_VERSION" != "$POM_VERSION" ]; then
           echo "La versión del tag ($TAG_VERSION) no coincide con la versión en pom.xml ($POM_VERSION)"
