@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java CD with Maven
 
 on:
   push:
@@ -20,9 +20,11 @@ jobs:
         distribution: 'adopt'
         java-version: '17'
 
+    - name: Set tag version as an environment variable
+      run: echo "TAG_VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+
     - name: Verify Maven version in pom.xml
       run: |
-        TAG_VERSION=${GITHUB_REF/refs\/tags\/v/}
         POM_VERSION=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml)
         
         if [ "$TAG_VERSION" != "$POM_VERSION" ]; then
@@ -35,9 +37,6 @@ jobs:
 
     - name: Package JAR
       run: mvn package
-
-    - name: Set tag version as an environment variable
-      run: echo "TAG_VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
 
     - name: Create GitHub Release
       run: gh release create ${{ github.ref }} target/action-test-${TAG_VERSION}.jar -t "Release ${{ github.ref }}" -n "Auto-generate release notes"
