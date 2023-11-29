@@ -15,3 +15,9 @@ jobs:
 
       - name: Check docker is installed
         run: docker --version
+
+      - name: Build JAR with Maven
+        run: mvn clean package
+  
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
