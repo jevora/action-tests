@@ -16,7 +16,7 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
       - name: Build JAR with Maven
-        run: mvn clean package
+        run: cd .. | mvn clean package
   
       - name: Login to Docker Hub works
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
