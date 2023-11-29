@@ -12,3 +12,6 @@ jobs:
     steps:
       - name: Say Hello world
         run: echo "Hello world"
+
+      - name: Check docker is installed
+        run: docker --version
