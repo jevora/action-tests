@@ -47,9 +47,9 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>org.example.Main</mainClass>
-                            <finalName>action-test</finalName>
                         </manifest>
                     </archive>
+                    <finalName>action-test</finalName>
                 </configuration>
             </plugin>
         </plugins>
