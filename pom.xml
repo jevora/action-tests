@@ -47,6 +47,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>org.example.Main</mainClass>
+                            <finalName>action-test</finalName>
                         </manifest>
                     </archive>
                 </configuration>
